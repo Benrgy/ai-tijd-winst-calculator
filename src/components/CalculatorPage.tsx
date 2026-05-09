@@ -177,10 +177,26 @@ export default function CalculatorPage() {
   const [copied, setCopied] = useState(false);
   const [activePromptTab, setActivePromptTab] = useState<"email" | "notulen" | "rapportage">("email");
   const [updated, setUpdated] = useState(false);
+  const [showStickyCta, setShowStickyCta] = useState(false);
+  const [stickyDismissed, setStickyDismissed] = useState(false);
 
   useEffect(() => {
     track("calculator_view");
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || stickyDismissed) return;
+    const onScroll = () => {
+      const el = document.getElementById("berekenen");
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      // Show once user has scrolled past the calculator/result block
+      setShowStickyCta(rect.bottom < window.innerHeight * 0.4);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [stickyDismissed]);
 
   useEffect(() => {
     setUpdated(true);
@@ -944,6 +960,42 @@ export default function CalculatorPage() {
           </ul>
         </div>
       </footer>
+
+      {/* STICKY MOBILE CTA */}
+      {showStickyCta && !stickyDismissed && (
+        <div
+          className="md:hidden fixed bottom-3 inset-x-3 z-40 rounded-2xl border border-border bg-card/95 backdrop-blur shadow-glow p-3 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4"
+          role="region"
+          aria-label="Cursus call-to-action"
+        >
+          <div className="flex-1 min-w-0">
+            <div className="text-sm font-semibold text-foreground truncate">
+              Leer betere prompts schrijven
+            </div>
+            <div className="text-xs text-muted-foreground truncate">
+              Nederlandstalige AI-cursus
+            </div>
+          </div>
+          <a
+            href={AFFILIATE_URL}
+            target="_blank"
+            rel="sponsored nofollow noopener"
+            onClick={() => track("cta_promptschool_click", { source: "sticky_mobile" })}
+            className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-3.5 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors whitespace-nowrap"
+          >
+            Bekijk cursus
+            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+          </a>
+          <button
+            type="button"
+            onClick={() => setStickyDismissed(true)}
+            aria-label="Sluit"
+            className="grid place-items-center h-7 w-7 rounded-full text-muted-foreground hover:bg-secondary"
+          >
+            ×
+          </button>
+        </div>
+      )}
     </div>
   );
 }
