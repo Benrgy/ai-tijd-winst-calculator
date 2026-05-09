@@ -177,10 +177,26 @@ export default function CalculatorPage() {
   const [copied, setCopied] = useState(false);
   const [activePromptTab, setActivePromptTab] = useState<"email" | "notulen" | "rapportage">("email");
   const [updated, setUpdated] = useState(false);
+  const [showStickyCta, setShowStickyCta] = useState(false);
+  const [stickyDismissed, setStickyDismissed] = useState(false);
 
   useEffect(() => {
     track("calculator_view");
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || stickyDismissed) return;
+    const onScroll = () => {
+      const el = document.getElementById("berekenen");
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      // Show once user has scrolled past the calculator/result block
+      setShowStickyCta(rect.bottom < window.innerHeight * 0.4);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [stickyDismissed]);
 
   useEffect(() => {
     setUpdated(true);
