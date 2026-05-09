@@ -9,8 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AiTijdwinstCalculatorVoorAdministratieRouteImport } from './routes/ai-tijdwinst-calculator-voor-administratie'
 import { Route as IndexRouteImport } from './routes/index'
 
+const AiTijdwinstCalculatorVoorAdministratieRoute =
+  AiTijdwinstCalculatorVoorAdministratieRouteImport.update({
+    id: '/ai-tijdwinst-calculator-voor-administratie',
+    path: '/ai-tijdwinst-calculator-voor-administratie',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +26,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-tijdwinst-calculator-voor-administratie': typeof AiTijdwinstCalculatorVoorAdministratieRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-tijdwinst-calculator-voor-administratie': typeof AiTijdwinstCalculatorVoorAdministratieRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-tijdwinst-calculator-voor-administratie': typeof AiTijdwinstCalculatorVoorAdministratieRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/ai-tijdwinst-calculator-voor-administratie'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/ai-tijdwinst-calculator-voor-administratie'
+  id: '__root__' | '/' | '/ai-tijdwinst-calculator-voor-administratie'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiTijdwinstCalculatorVoorAdministratieRoute: typeof AiTijdwinstCalculatorVoorAdministratieRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/ai-tijdwinst-calculator-voor-administratie': {
+      id: '/ai-tijdwinst-calculator-voor-administratie'
+      path: '/ai-tijdwinst-calculator-voor-administratie'
+      fullPath: '/ai-tijdwinst-calculator-voor-administratie'
+      preLoaderRoute: typeof AiTijdwinstCalculatorVoorAdministratieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +71,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiTijdwinstCalculatorVoorAdministratieRoute:
+    AiTijdwinstCalculatorVoorAdministratieRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
