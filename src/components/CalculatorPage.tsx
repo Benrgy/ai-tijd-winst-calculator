@@ -320,8 +320,9 @@ export default function CalculatorPage() {
               ["Berekenen", "berekenen"],
               ["Voorbeelden", "voorbeelden"],
               ["Methode", "methode"],
+              ["Vergelijking", "vergelijking"],
+              ["Prompts per beroep", "prompts-per-beroep"],
               ["FAQ", "faq"],
-              ["Verder leren", "verder-leren"],
             ].map(([label, id]) => (
               <li key={id}>
                 <a
