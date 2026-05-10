@@ -894,6 +894,116 @@ export default function CalculatorPage() {
             </p>
           </section>
 
+          {/* VERGELIJKING — longtail: ChatGPT vs Copilot vs Gemini vs Claude voor administratie Nederland */}
+          <section id="vergelijking" className="mt-14 scroll-mt-20">
+            <h2 className="text-2xl font-bold">
+              ChatGPT vs Microsoft Copilot vs Gemini vs Claude voor Nederlandse administratie
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground max-w-3xl">
+              Welke AI-tool bespaart het meeste tijd bij Nederlands kantoorwerk?
+              Een korte vergelijking voor e-mail, notulen, rapportages en AVG-bewust gebruik.
+            </p>
+            <div className="mt-5 overflow-x-auto rounded-2xl border border-border bg-card">
+              <table className="w-full text-sm">
+                <thead className="bg-secondary/60 text-foreground">
+                  <tr>
+                    <th scope="col" className="px-4 py-3 text-left font-semibold">Tool</th>
+                    <th scope="col" className="px-4 py-3 text-left font-semibold">Sterk in</th>
+                    <th scope="col" className="px-4 py-3 text-left font-semibold">Tijdwinst administratie</th>
+                    <th scope="col" className="px-4 py-3 text-left font-semibold">Nederlandstalig</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {[
+                    ["ChatGPT (OpenAI)", "E-mails, notulen, vrije teksten, brainstormen, prompts", "Hoog (30–60%)", "Zeer goed"],
+                    ["Microsoft Copilot", "Outlook, Word, Excel, Teams-samenvattingen", "Hoog (30–55%) binnen Microsoft 365", "Goed"],
+                    ["Google Gemini", "Gmail, Docs, samenvatten van lange documenten", "Middel-hoog (25–45%)", "Goed"],
+                    ["Claude (Anthropic)", "Lange documenten, juridische teksten, nuance", "Middel-hoog (25–50%)", "Goed"],
+                  ].map(([tool, strong, save, nl]) => (
+                    <tr key={tool}>
+                      <th scope="row" className="px-4 py-3 text-left font-medium text-foreground">{tool}</th>
+                      <td className="px-4 py-3 text-muted-foreground">{strong}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{save}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{nl}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-sm text-muted-foreground max-w-3xl">
+              Veel Nederlandse kantoormedewerkers combineren <strong>Microsoft Copilot</strong> voor
+              werk binnen Outlook, Word en Excel met <strong>ChatGPT</strong> voor losse teksten,
+              research en complexere prompts. De grootste tijdwinst ontstaat door
+              promptstructuren te leren die je in elke tool kunt hergebruiken.
+            </p>
+          </section>
+
+          {/* PROMPTS PER BEROEP — longtail keyword cluster */}
+          <section id="prompts-per-beroep" className="mt-14 scroll-mt-20">
+            <h2 className="text-2xl font-bold">
+              ChatGPT-prompts per beroep: directe tijdwinst voor Nederlandse kantoorrollen
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground max-w-3xl">
+              Concrete Nederlandse prompts die je vandaag kunt kopiëren. Vervang de
+              tekst tussen blokhaken door je eigen context.
+            </p>
+            <div className="mt-5 grid md:grid-cols-2 gap-4">
+              {[
+                {
+                  role: "Managementassistent",
+                  use: "Agenda-conflicten oplossen",
+                  prompt: "Jij bent een ervaren managementassistent. Stel een korte, vriendelijke Nederlandse e-mail op om een afspraak te verzetten. Context: [situatie]. Geef twee alternatieve momenten en sluit af met een duidelijke vraag om bevestiging.",
+                },
+                {
+                  role: "Secretaresse",
+                  use: "Notulen uit ruwe aantekeningen",
+                  prompt: "Maak van deze ruwe vergadernotities professionele Nederlandse notulen met drie blokken: besluiten, actiepunten (met eigenaar en deadline) en open vragen. Behoud belangrijke details, schrap herhalingen: [plak aantekeningen].",
+                },
+                {
+                  role: "Administratief medewerker",
+                  use: "Standaardbrief in vriendelijke toon",
+                  prompt: "Herschrijf deze standaardbrief in vlot, vriendelijk Nederlands. Houd alle juridische termen intact. Geef twee varianten: één formeel, één informeel: [plak brief].",
+                },
+                {
+                  role: "Officemanager",
+                  use: "Interne update voor team",
+                  prompt: "Schrijf een korte, duidelijke interne update voor het team in het Nederlands. Maximaal 150 woorden, met kopjes en bullets. Onderwerp: [thema]. Belangrijkste punten: [opsomming].",
+                },
+                {
+                  role: "Zzp'er / ondernemer",
+                  use: "Opvolgmail na offerte",
+                  prompt: "Schrijf een professionele opvolgmail in het Nederlands aan een prospect die een offerte heeft ontvangen maar nog niet heeft gereageerd. Vriendelijk, niet pushy, met één concrete vervolgvraag. Context: [situatie].",
+                },
+                {
+                  role: "Klantenservice",
+                  use: "Reactie op klacht",
+                  prompt: "Stel een empathische Nederlandse e-mail op als reactie op deze klantklacht. Erken het probleem, leg de vervolgstap uit en geef een realistische termijn. Houd de toon professioneel en menselijk: [plak klacht].",
+                },
+              ].map((p) => (
+                <article key={p.role} className="rounded-2xl border border-border bg-card p-5">
+                  <div className="text-xs font-semibold uppercase tracking-wide text-primary">{p.role}</div>
+                  <h3 className="mt-1 font-semibold text-foreground">{p.use}</h3>
+                  <pre className="mt-3 whitespace-pre-wrap font-sans text-xs text-foreground/80 bg-secondary/50 rounded-xl p-3 leading-relaxed">{p.prompt}</pre>
+                </article>
+              ))}
+            </div>
+            <p className="mt-5 text-sm text-muted-foreground max-w-3xl">
+              Wil je leren hoe je dit soort prompts zelf opbouwt voor jouw eigen werk?
+              In de Nederlandstalige cursus van{" "}
+              <a
+                href={AFFILIATE_URL}
+                target="_blank"
+                rel="sponsored nofollow noopener"
+                onClick={() => track("cta_promptschool_click", { source: "prompts_per_beroep" })}
+                className="text-primary font-medium hover:underline"
+              >
+                PromptSchool.online
+              </a>{" "}
+              leer je promptstructuren voor ChatGPT, Claude, Gemini en Midjourney —
+              inclusief lifetime toegang en updates.
+            </p>
+          </section>
+
           {/* FAQ */}
           <section id="faq" className="mt-14 scroll-mt-20">
             <h2 className="text-2xl font-bold">Veelgestelde vragen</h2>
