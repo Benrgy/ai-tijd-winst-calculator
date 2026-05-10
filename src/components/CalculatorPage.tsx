@@ -124,40 +124,7 @@ function Accordion({
   );
 }
 
-const FAQS = [
-  {
-    q: "Hoeveel tijd bespaart ChatGPT met administratie?",
-    a: "ChatGPT kan tijd besparen bij administratieve taken, maar de exacte besparing hangt af van je taken, prompts en controleproces. Deze calculator gebruikt drie scenario's: 25% voorzichtig, 40% realistisch en 60% ambitieus. Zie de uitkomst als een indicatie, niet als garantie.",
-  },
-  {
-    q: "Kan ChatGPT zakelijke e-mails sneller schrijven?",
-    a: "Ja, ChatGPT kan helpen om zakelijke e-mails sneller te schrijven, vooral bij terugkerende situaties. Denk aan klantreacties, opvolgmails, formele antwoorden, samenvattingen of herschrijven in een vriendelijkere toon. Controleer altijd of de inhoud klopt en past bij je situatie.",
-  },
-  {
-    q: "Kan ChatGPT helpen met notulen en vergaderverslagen?",
-    a: "Ja, ChatGPT kan helpen om notulen, actiepunten en samenvattingen te structureren op basis van een transcript of ruwe aantekeningen. Gebruik geen vertrouwelijke informatie zonder toestemming of duidelijk intern beleid. Menselijke controle blijft belangrijk, zeker bij besluiten of gevoelige onderwerpen.",
-  },
-  {
-    q: "Is deze berekening een garantie?",
-    a: "Nee, deze calculator geeft een indicatieve schatting en geen garantie. De werkelijke tijdwinst hangt af van je taken, werkwijze, promptkwaliteit, ervaring met AI en controle op de output. Gebruik de berekening als praktisch startpunt voor betere workflowkeuzes.",
-  },
-  {
-    q: "Waarom zijn goede prompts belangrijk?",
-    a: "Goede prompts zijn belangrijk omdat ChatGPT betere output geeft wanneer de context, taak en gewenste vorm duidelijk zijn. Vage prompts leveren vaak algemene of onnatuurlijke tekst op. Met betere prompts krijg je sneller bruikbare concepten en hoef je minder te corrigeren.",
-  },
-  {
-    q: "Is een ChatGPT-cursus nuttig voor administratief medewerkers?",
-    a: "Een ChatGPT-cursus kan nuttig zijn voor administratief medewerkers die regelmatig e-mails, notulen, samenvattingen of standaardteksten maken. Een Nederlandstalige cursus verlaagt de drempel en helpt om prompts te gebruiken in herkenbare werksituaties.",
-  },
-  {
-    q: "Is AI gebruiken voor administratie veilig?",
-    a: "AI gebruiken voor administratie kan veilig zijn als je zorgvuldig omgaat met vertrouwelijke informatie en de output controleert. Voer geen gevoelige persoonsgegevens, klantdata of interne documenten in zonder duidelijke toestemming of beleid. Controleer altijd feiten, toon en context.",
-  },
-  {
-    q: "Welke administratieve taken kun je automatiseren met ChatGPT?",
-    a: "ChatGPT kan vooral helpen bij terugkerende administratieve taken zoals e-mails opstellen, teksten herschrijven, notulen structureren, actiepunten samenvatten en rapportages voorbereiden. Volledige automatisering is niet altijd verstandig. Controleer de output altijd zelf, zeker bij gevoelige of zakelijke informatie.",
-  },
-];
+const FAQS = SEO_FAQS.map(([q, a]) => ({ q, a }));
 
 const track = (event: string, data?: Record<string, unknown>) => {
   // Analytics hook — connect later (e.g. plausible, GA4)
