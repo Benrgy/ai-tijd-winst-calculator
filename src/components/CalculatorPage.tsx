@@ -643,36 +643,41 @@ export default function CalculatorPage() {
                 className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-white/10 blur-3xl"
               />
               <h2 className="text-2xl sm:text-3xl font-bold max-w-2xl">
-                Wil je deze tijdwinst ook echt halen?
+                Verdien je tijdwinst structureel terug met PromptSchool.online
               </h2>
               <p className="mt-3 max-w-2xl text-white/90 leading-relaxed">
-                Losse prompts kunnen helpen, maar structurele tijdwinst vraagt
-                om betere AI-vaardigheden. Met een Nederlandstalige AI-cursus
-                zoals PromptSchool leer je hoe je ChatGPT, Claude en Gemini
-                doelgericht gebruikt voor e-mails, teksten, samenvattingen en
-                dagelijkse kantoorprocessen.
+                Losse prompts kopiëren werkt tijdelijk. Voor structurele tijdwinst
+                heb je herhaalbare promptstructuren nodig. PromptSchool.online is
+                de Nederlandstalige Prompt Engineering cursus voor{" "}
+                <strong>ChatGPT, Midjourney, Claude en Gemini</strong> — speciaal
+                ontwikkeld voor Nederlandse professionals die AI willen inzetten
+                voor e-mails, notulen, rapportages en dagelijkse kantoorprocessen.
               </p>
               <ul className="mt-5 flex flex-wrap gap-2 text-sm">
-                {["Nederlandstalige cursus", "Voor ChatGPT, Claude en Gemini", "Praktisch toepasbaar"].map(
-                  (t) => (
-                    <li
-                      key={t}
-                      className="rounded-full bg-white/15 px-3 py-1 backdrop-blur"
-                    >
-                      ✓ {t}
-                    </li>
-                  ),
-                )}
+                {[
+                  "100% Nederlandstalig",
+                  "Lifetime toegang vanaf €249 (early access, normaal €499)",
+                  "7 dagen geld-terug-garantie",
+                  "Veilige betaling via Mollie",
+                  "Quizzen + toekomstige modules inbegrepen",
+                ].map((t) => (
+                  <li
+                    key={t}
+                    className="rounded-full bg-white/15 px-3 py-1 backdrop-blur"
+                  >
+                    ✓ {t}
+                  </li>
+                ))}
               </ul>
               <a
                 href={AFFILIATE_URL}
                 target="_blank"
                 rel="sponsored nofollow noopener"
-                aria-label="Bekijk de Nederlandse AI-cursus van PromptSchool"
+                aria-label="Bekijk de Nederlandstalige AI-cursus van PromptSchool.online"
                 onClick={() => track("cta_promptschool_click", { source: "main_cta" })}
                 className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-primary hover:bg-white/95 transition-all hover:scale-[1.02]"
               >
-                Leer betere ChatGPT-prompts schrijven
+                Bekijk PromptSchool.online (Early Access €249)
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
               <p className="mt-4 text-xs text-white/75">
