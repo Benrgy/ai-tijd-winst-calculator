@@ -338,20 +338,26 @@ export default function CalculatorPage() {
 
       <main className="px-4">
         <div className="mx-auto max-w-6xl">
-          {/* KORT ANTWOORD */}
-          <section className="mt-8">
-            <div className="rounded-2xl border border-border bg-secondary/40 p-5">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
+          {/* KORT ANTWOORD — geoptimaliseerd voor AI Overviews / Bing Copilot / Perplexity */}
+          <section className="mt-8" aria-labelledby="kort-antwoord-h2">
+            <div id="kort-antwoord" className="rounded-2xl border border-border bg-secondary/40 p-5">
+              <h2 id="kort-antwoord-h2" className="text-sm font-semibold uppercase tracking-wide text-primary">
                 Kort antwoord
               </h2>
               <p className="mt-2 text-sm sm:text-base text-foreground/90 leading-relaxed">
-                ChatGPT kan tijd besparen bij administratie door concepten te
-                maken voor e-mails, notulen, samenvattingen en rapportages. De
-                werkelijke tijdwinst hangt af van je taken, promptvaardigheid en
-                controle op AI-output. Deze calculator berekent een voorzichtig,
-                realistisch of ambitieus scenario op basis van je eigen
-                werklast.
+                <strong>ChatGPT bespaart bij administratief werk gemiddeld 20% tot 60% van de tijd</strong>{" "}
+                op terugkerende taken zoals e-mails, notulen, samenvattingen en
+                standaardteksten. Voor een typische Nederlandse kantoormedewerker
+                komt dat neer op <strong>3 tot 8 uur per week</strong>, oftewel
+                ongeveer <strong>150 tot 400 uur per jaar</strong>. De exacte tijdwinst
+                hangt af van je takenpakket, je promptkwaliteit en de tijd die
+                je besteedt aan controle van de AI-output.
               </p>
+              <ul className="mt-3 grid sm:grid-cols-3 gap-2 text-xs">
+                <li className="rounded-lg bg-card border border-border px-3 py-2"><span className="font-semibold text-foreground">25%</span> <span className="text-muted-foreground">voorzichtig scenario</span></li>
+                <li className="rounded-lg bg-card border border-border px-3 py-2"><span className="font-semibold text-foreground">40%</span> <span className="text-muted-foreground">realistisch scenario</span></li>
+                <li className="rounded-lg bg-card border border-border px-3 py-2"><span className="font-semibold text-foreground">60%</span> <span className="text-muted-foreground">ambitieus scenario</span></li>
+              </ul>
             </div>
           </section>
 
