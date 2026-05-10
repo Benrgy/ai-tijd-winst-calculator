@@ -242,16 +242,16 @@ export default function CalculatorPage() {
             Gratis AI Calculator
           </span>
           <h1 className="mt-4 text-3xl sm:text-5xl font-bold tracking-tight max-w-4xl">
-            AI Tijdwinst Calculator: hoeveel tijd bespaart ChatGPT met
-            administratie?
+            Hoeveel tijd bespaart ChatGPT met administratie? Bereken het in 60 seconden
           </h1>
           <p className="mt-4 max-w-2xl text-base sm:text-lg text-muted-foreground">
-            Bereken in 60 seconden hoeveel tijd je mogelijk bespaart op
-            e-mails, notulen en administratieve teksten met betere
-            ChatGPT-prompts.
+            Gratis Nederlandse AI Tijdwinst Calculator voor e-mails, notulen,
+            rapportages en standaardteksten. Inclusief benchmarks, voorbeeldprompts
+            en een vergelijking van ChatGPT, Microsoft Copilot, Gemini en Claude
+            voor Nederlands kantoorwerk.
           </p>
           <ul className="mt-5 flex flex-wrap gap-2 text-sm">
-            {["Geen account nodig", "Direct resultaat", "Schatting op basis van je eigen werklast"].map(
+            {["Geen account nodig", "Direct resultaat", "Op basis van je eigen werklast", "AVG-bewuste tips"].map(
               (t) => (
                 <li
                   key={t}
@@ -262,6 +262,22 @@ export default function CalculatorPage() {
               ),
             )}
           </ul>
+
+          {/* E-E-A-T trust strip */}
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5">
+              <CalendarClock className="h-3.5 w-3.5" aria-hidden="true" />
+              Laatst bijgewerkt: <time dateTime={LAST_REVIEWED}>{new Date(LAST_REVIEWED).toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" })}</time>
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Users className="h-3.5 w-3.5" aria-hidden="true" />
+              Door redactie AI Tijdwinst
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
+              Methode transparant uitgelegd
+            </span>
+          </div>
 
           {/* Time-leak cards */}
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
