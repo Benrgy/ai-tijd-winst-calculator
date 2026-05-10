@@ -72,6 +72,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "Lovable App" },
+      { property: "og:title", content: "Lovable App" },
+      { name: "twitter:title", content: "Lovable App" },
+      { name: "description", content: "AI Tijdwinst Calculator: bereken hoeveel tijd en geld je bespaart met ChatGPT voor administratie." },
+      { property: "og:description", content: "AI Tijdwinst Calculator: bereken hoeveel tijd en geld je bespaart met ChatGPT voor administratie." },
+      { name: "twitter:description", content: "AI Tijdwinst Calculator: bereken hoeveel tijd en geld je bespaart met ChatGPT voor administratie." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9ab1c200-9904-4682-9877-7eb0d7f8389c/id-preview-99ec8077--6361c07f-7be2-4652-860e-c5f31e463aa3.lovable.app-1778453267268.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9ab1c200-9904-4682-9877-7eb0d7f8389c/id-preview-99ec8077--6361c07f-7be2-4652-860e-c5f31e463aa3.lovable.app-1778453267268.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       {
