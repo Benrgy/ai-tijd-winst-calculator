@@ -15,7 +15,11 @@ import {
   Target,
   Calculator as CalcIcon,
   Gauge,
+  ShieldCheck,
+  CalendarClock,
+  Users,
 } from "lucide-react";
+import { FAQS as SEO_FAQS, LAST_REVIEWED } from "@/lib/seo";
 
 const AFFILIATE_URL =
   "https://www.paypro.nl/producten/Beheers_AI_als_een_expert!_Compleet_cursus_voor_AI!/122439/14535";
