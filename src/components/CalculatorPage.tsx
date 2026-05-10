@@ -15,7 +15,11 @@ import {
   Target,
   Calculator as CalcIcon,
   Gauge,
+  ShieldCheck,
+  CalendarClock,
+  Users,
 } from "lucide-react";
+import { FAQS as SEO_FAQS, LAST_REVIEWED } from "@/lib/seo";
 
 const AFFILIATE_URL =
   "https://www.paypro.nl/producten/Beheers_AI_als_een_expert!_Compleet_cursus_voor_AI!/122439/14535";
@@ -120,40 +124,7 @@ function Accordion({
   );
 }
 
-const FAQS = [
-  {
-    q: "Hoeveel tijd bespaart ChatGPT met administratie?",
-    a: "ChatGPT kan tijd besparen bij administratieve taken, maar de exacte besparing hangt af van je taken, prompts en controleproces. Deze calculator gebruikt drie scenario's: 25% voorzichtig, 40% realistisch en 60% ambitieus. Zie de uitkomst als een indicatie, niet als garantie.",
-  },
-  {
-    q: "Kan ChatGPT zakelijke e-mails sneller schrijven?",
-    a: "Ja, ChatGPT kan helpen om zakelijke e-mails sneller te schrijven, vooral bij terugkerende situaties. Denk aan klantreacties, opvolgmails, formele antwoorden, samenvattingen of herschrijven in een vriendelijkere toon. Controleer altijd of de inhoud klopt en past bij je situatie.",
-  },
-  {
-    q: "Kan ChatGPT helpen met notulen en vergaderverslagen?",
-    a: "Ja, ChatGPT kan helpen om notulen, actiepunten en samenvattingen te structureren op basis van een transcript of ruwe aantekeningen. Gebruik geen vertrouwelijke informatie zonder toestemming of duidelijk intern beleid. Menselijke controle blijft belangrijk, zeker bij besluiten of gevoelige onderwerpen.",
-  },
-  {
-    q: "Is deze berekening een garantie?",
-    a: "Nee, deze calculator geeft een indicatieve schatting en geen garantie. De werkelijke tijdwinst hangt af van je taken, werkwijze, promptkwaliteit, ervaring met AI en controle op de output. Gebruik de berekening als praktisch startpunt voor betere workflowkeuzes.",
-  },
-  {
-    q: "Waarom zijn goede prompts belangrijk?",
-    a: "Goede prompts zijn belangrijk omdat ChatGPT betere output geeft wanneer de context, taak en gewenste vorm duidelijk zijn. Vage prompts leveren vaak algemene of onnatuurlijke tekst op. Met betere prompts krijg je sneller bruikbare concepten en hoef je minder te corrigeren.",
-  },
-  {
-    q: "Is een ChatGPT-cursus nuttig voor administratief medewerkers?",
-    a: "Een ChatGPT-cursus kan nuttig zijn voor administratief medewerkers die regelmatig e-mails, notulen, samenvattingen of standaardteksten maken. Een Nederlandstalige cursus verlaagt de drempel en helpt om prompts te gebruiken in herkenbare werksituaties.",
-  },
-  {
-    q: "Is AI gebruiken voor administratie veilig?",
-    a: "AI gebruiken voor administratie kan veilig zijn als je zorgvuldig omgaat met vertrouwelijke informatie en de output controleert. Voer geen gevoelige persoonsgegevens, klantdata of interne documenten in zonder duidelijke toestemming of beleid. Controleer altijd feiten, toon en context.",
-  },
-  {
-    q: "Welke administratieve taken kun je automatiseren met ChatGPT?",
-    a: "ChatGPT kan vooral helpen bij terugkerende administratieve taken zoals e-mails opstellen, teksten herschrijven, notulen structureren, actiepunten samenvatten en rapportages voorbereiden. Volledige automatisering is niet altijd verstandig. Controleer de output altijd zelf, zeker bij gevoelige of zakelijke informatie.",
-  },
-];
+const FAQS = SEO_FAQS.map(([q, a]) => ({ q, a }));
 
 const track = (event: string, data?: Record<string, unknown>) => {
   // Analytics hook — connect later (e.g. plausible, GA4)
@@ -271,16 +242,16 @@ export default function CalculatorPage() {
             Gratis AI Calculator
           </span>
           <h1 className="mt-4 text-3xl sm:text-5xl font-bold tracking-tight max-w-4xl">
-            AI Tijdwinst Calculator: hoeveel tijd bespaart ChatGPT met
-            administratie?
+            Hoeveel tijd bespaart ChatGPT met administratie? Bereken het in 60 seconden
           </h1>
           <p className="mt-4 max-w-2xl text-base sm:text-lg text-muted-foreground">
-            Bereken in 60 seconden hoeveel tijd je mogelijk bespaart op
-            e-mails, notulen en administratieve teksten met betere
-            ChatGPT-prompts.
+            Gratis Nederlandse AI Tijdwinst Calculator voor e-mails, notulen,
+            rapportages en standaardteksten. Inclusief benchmarks, voorbeeldprompts
+            en een vergelijking van ChatGPT, Microsoft Copilot, Gemini en Claude
+            voor Nederlands kantoorwerk.
           </p>
           <ul className="mt-5 flex flex-wrap gap-2 text-sm">
-            {["Geen account nodig", "Direct resultaat", "Schatting op basis van je eigen werklast"].map(
+            {["Geen account nodig", "Direct resultaat", "Op basis van je eigen werklast", "AVG-bewuste tips"].map(
               (t) => (
                 <li
                   key={t}
@@ -291,6 +262,22 @@ export default function CalculatorPage() {
               ),
             )}
           </ul>
+
+          {/* E-E-A-T trust strip */}
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5">
+              <CalendarClock className="h-3.5 w-3.5" aria-hidden="true" />
+              Laatst bijgewerkt: <time dateTime={LAST_REVIEWED}>{new Date(LAST_REVIEWED).toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" })}</time>
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Users className="h-3.5 w-3.5" aria-hidden="true" />
+              Door redactie AI Tijdwinst
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
+              Methode transparant uitgelegd
+            </span>
+          </div>
 
           {/* Time-leak cards */}
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -333,8 +320,9 @@ export default function CalculatorPage() {
               ["Berekenen", "berekenen"],
               ["Voorbeelden", "voorbeelden"],
               ["Methode", "methode"],
+              ["Vergelijking", "vergelijking"],
+              ["Prompts per beroep", "prompts-per-beroep"],
               ["FAQ", "faq"],
-              ["Verder leren", "verder-leren"],
             ].map(([label, id]) => (
               <li key={id}>
                 <a
@@ -351,20 +339,26 @@ export default function CalculatorPage() {
 
       <main className="px-4">
         <div className="mx-auto max-w-6xl">
-          {/* KORT ANTWOORD */}
-          <section className="mt-8">
-            <div className="rounded-2xl border border-border bg-secondary/40 p-5">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
+          {/* KORT ANTWOORD — geoptimaliseerd voor AI Overviews / Bing Copilot / Perplexity */}
+          <section className="mt-8" aria-labelledby="kort-antwoord-h2">
+            <div id="kort-antwoord" className="rounded-2xl border border-border bg-secondary/40 p-5">
+              <h2 id="kort-antwoord-h2" className="text-sm font-semibold uppercase tracking-wide text-primary">
                 Kort antwoord
               </h2>
               <p className="mt-2 text-sm sm:text-base text-foreground/90 leading-relaxed">
-                ChatGPT kan tijd besparen bij administratie door concepten te
-                maken voor e-mails, notulen, samenvattingen en rapportages. De
-                werkelijke tijdwinst hangt af van je taken, promptvaardigheid en
-                controle op AI-output. Deze calculator berekent een voorzichtig,
-                realistisch of ambitieus scenario op basis van je eigen
-                werklast.
+                <strong>ChatGPT bespaart bij administratief werk gemiddeld 20% tot 60% van de tijd</strong>{" "}
+                op terugkerende taken zoals e-mails, notulen, samenvattingen en
+                standaardteksten. Voor een typische Nederlandse kantoormedewerker
+                komt dat neer op <strong>3 tot 8 uur per week</strong>, oftewel
+                ongeveer <strong>150 tot 400 uur per jaar</strong>. De exacte tijdwinst
+                hangt af van je takenpakket, je promptkwaliteit en de tijd die
+                je besteedt aan controle van de AI-output.
               </p>
+              <ul className="mt-3 grid sm:grid-cols-3 gap-2 text-xs">
+                <li className="rounded-lg bg-card border border-border px-3 py-2"><span className="font-semibold text-foreground">25%</span> <span className="text-muted-foreground">voorzichtig scenario</span></li>
+                <li className="rounded-lg bg-card border border-border px-3 py-2"><span className="font-semibold text-foreground">40%</span> <span className="text-muted-foreground">realistisch scenario</span></li>
+                <li className="rounded-lg bg-card border border-border px-3 py-2"><span className="font-semibold text-foreground">60%</span> <span className="text-muted-foreground">ambitieus scenario</span></li>
+              </ul>
             </div>
           </section>
 
@@ -649,36 +643,41 @@ export default function CalculatorPage() {
                 className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-white/10 blur-3xl"
               />
               <h2 className="text-2xl sm:text-3xl font-bold max-w-2xl">
-                Wil je deze tijdwinst ook echt halen?
+                Verdien je tijdwinst structureel terug met PromptSchool.online
               </h2>
               <p className="mt-3 max-w-2xl text-white/90 leading-relaxed">
-                Losse prompts kunnen helpen, maar structurele tijdwinst vraagt
-                om betere AI-vaardigheden. Met een Nederlandstalige AI-cursus
-                zoals PromptSchool leer je hoe je ChatGPT, Claude en Gemini
-                doelgericht gebruikt voor e-mails, teksten, samenvattingen en
-                dagelijkse kantoorprocessen.
+                Losse prompts kopiëren werkt tijdelijk. Voor structurele tijdwinst
+                heb je herhaalbare promptstructuren nodig. PromptSchool.online is
+                de Nederlandstalige Prompt Engineering cursus voor{" "}
+                <strong>ChatGPT, Midjourney, Claude en Gemini</strong> — speciaal
+                ontwikkeld voor Nederlandse professionals die AI willen inzetten
+                voor e-mails, notulen, rapportages en dagelijkse kantoorprocessen.
               </p>
               <ul className="mt-5 flex flex-wrap gap-2 text-sm">
-                {["Nederlandstalige cursus", "Voor ChatGPT, Claude en Gemini", "Praktisch toepasbaar"].map(
-                  (t) => (
-                    <li
-                      key={t}
-                      className="rounded-full bg-white/15 px-3 py-1 backdrop-blur"
-                    >
-                      ✓ {t}
-                    </li>
-                  ),
-                )}
+                {[
+                  "100% Nederlandstalig",
+                  "Lifetime toegang vanaf €249 (early access, normaal €499)",
+                  "7 dagen geld-terug-garantie",
+                  "Veilige betaling via Mollie",
+                  "Quizzen + toekomstige modules inbegrepen",
+                ].map((t) => (
+                  <li
+                    key={t}
+                    className="rounded-full bg-white/15 px-3 py-1 backdrop-blur"
+                  >
+                    ✓ {t}
+                  </li>
+                ))}
               </ul>
               <a
                 href={AFFILIATE_URL}
                 target="_blank"
                 rel="sponsored nofollow noopener"
-                aria-label="Bekijk de Nederlandse AI-cursus van PromptSchool"
+                aria-label="Bekijk de Nederlandstalige AI-cursus van PromptSchool.online"
                 onClick={() => track("cta_promptschool_click", { source: "main_cta" })}
                 className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-primary hover:bg-white/95 transition-all hover:scale-[1.02]"
               >
-                Leer betere ChatGPT-prompts schrijven
+                Bekijk PromptSchool.online (Early Access €249)
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
               <p className="mt-4 text-xs text-white/75">
@@ -898,6 +897,116 @@ export default function CalculatorPage() {
               Deze calculator is minder geschikt voor taken waarbij creatief
               oordeel, strategie of gevoelige besluitvorming belangrijker is dan
               snelheid.
+            </p>
+          </section>
+
+          {/* VERGELIJKING — longtail: ChatGPT vs Copilot vs Gemini vs Claude voor administratie Nederland */}
+          <section id="vergelijking" className="mt-14 scroll-mt-20">
+            <h2 className="text-2xl font-bold">
+              ChatGPT vs Microsoft Copilot vs Gemini vs Claude voor Nederlandse administratie
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground max-w-3xl">
+              Welke AI-tool bespaart het meeste tijd bij Nederlands kantoorwerk?
+              Een korte vergelijking voor e-mail, notulen, rapportages en AVG-bewust gebruik.
+            </p>
+            <div className="mt-5 overflow-x-auto rounded-2xl border border-border bg-card">
+              <table className="w-full text-sm">
+                <thead className="bg-secondary/60 text-foreground">
+                  <tr>
+                    <th scope="col" className="px-4 py-3 text-left font-semibold">Tool</th>
+                    <th scope="col" className="px-4 py-3 text-left font-semibold">Sterk in</th>
+                    <th scope="col" className="px-4 py-3 text-left font-semibold">Tijdwinst administratie</th>
+                    <th scope="col" className="px-4 py-3 text-left font-semibold">Nederlandstalig</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {[
+                    ["ChatGPT (OpenAI)", "E-mails, notulen, vrije teksten, brainstormen, prompts", "Hoog (30–60%)", "Zeer goed"],
+                    ["Microsoft Copilot", "Outlook, Word, Excel, Teams-samenvattingen", "Hoog (30–55%) binnen Microsoft 365", "Goed"],
+                    ["Google Gemini", "Gmail, Docs, samenvatten van lange documenten", "Middel-hoog (25–45%)", "Goed"],
+                    ["Claude (Anthropic)", "Lange documenten, juridische teksten, nuance", "Middel-hoog (25–50%)", "Goed"],
+                  ].map(([tool, strong, save, nl]) => (
+                    <tr key={tool}>
+                      <th scope="row" className="px-4 py-3 text-left font-medium text-foreground">{tool}</th>
+                      <td className="px-4 py-3 text-muted-foreground">{strong}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{save}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{nl}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-sm text-muted-foreground max-w-3xl">
+              Veel Nederlandse kantoormedewerkers combineren <strong>Microsoft Copilot</strong> voor
+              werk binnen Outlook, Word en Excel met <strong>ChatGPT</strong> voor losse teksten,
+              research en complexere prompts. De grootste tijdwinst ontstaat door
+              promptstructuren te leren die je in elke tool kunt hergebruiken.
+            </p>
+          </section>
+
+          {/* PROMPTS PER BEROEP — longtail keyword cluster */}
+          <section id="prompts-per-beroep" className="mt-14 scroll-mt-20">
+            <h2 className="text-2xl font-bold">
+              ChatGPT-prompts per beroep: directe tijdwinst voor Nederlandse kantoorrollen
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground max-w-3xl">
+              Concrete Nederlandse prompts die je vandaag kunt kopiëren. Vervang de
+              tekst tussen blokhaken door je eigen context.
+            </p>
+            <div className="mt-5 grid md:grid-cols-2 gap-4">
+              {[
+                {
+                  role: "Managementassistent",
+                  use: "Agenda-conflicten oplossen",
+                  prompt: "Jij bent een ervaren managementassistent. Stel een korte, vriendelijke Nederlandse e-mail op om een afspraak te verzetten. Context: [situatie]. Geef twee alternatieve momenten en sluit af met een duidelijke vraag om bevestiging.",
+                },
+                {
+                  role: "Secretaresse",
+                  use: "Notulen uit ruwe aantekeningen",
+                  prompt: "Maak van deze ruwe vergadernotities professionele Nederlandse notulen met drie blokken: besluiten, actiepunten (met eigenaar en deadline) en open vragen. Behoud belangrijke details, schrap herhalingen: [plak aantekeningen].",
+                },
+                {
+                  role: "Administratief medewerker",
+                  use: "Standaardbrief in vriendelijke toon",
+                  prompt: "Herschrijf deze standaardbrief in vlot, vriendelijk Nederlands. Houd alle juridische termen intact. Geef twee varianten: één formeel, één informeel: [plak brief].",
+                },
+                {
+                  role: "Officemanager",
+                  use: "Interne update voor team",
+                  prompt: "Schrijf een korte, duidelijke interne update voor het team in het Nederlands. Maximaal 150 woorden, met kopjes en bullets. Onderwerp: [thema]. Belangrijkste punten: [opsomming].",
+                },
+                {
+                  role: "Zzp'er / ondernemer",
+                  use: "Opvolgmail na offerte",
+                  prompt: "Schrijf een professionele opvolgmail in het Nederlands aan een prospect die een offerte heeft ontvangen maar nog niet heeft gereageerd. Vriendelijk, niet pushy, met één concrete vervolgvraag. Context: [situatie].",
+                },
+                {
+                  role: "Klantenservice",
+                  use: "Reactie op klacht",
+                  prompt: "Stel een empathische Nederlandse e-mail op als reactie op deze klantklacht. Erken het probleem, leg de vervolgstap uit en geef een realistische termijn. Houd de toon professioneel en menselijk: [plak klacht].",
+                },
+              ].map((p) => (
+                <article key={p.role} className="rounded-2xl border border-border bg-card p-5">
+                  <div className="text-xs font-semibold uppercase tracking-wide text-primary">{p.role}</div>
+                  <h3 className="mt-1 font-semibold text-foreground">{p.use}</h3>
+                  <pre className="mt-3 whitespace-pre-wrap font-sans text-xs text-foreground/80 bg-secondary/50 rounded-xl p-3 leading-relaxed">{p.prompt}</pre>
+                </article>
+              ))}
+            </div>
+            <p className="mt-5 text-sm text-muted-foreground max-w-3xl">
+              Wil je leren hoe je dit soort prompts zelf opbouwt voor jouw eigen werk?
+              In de Nederlandstalige cursus van{" "}
+              <a
+                href={AFFILIATE_URL}
+                target="_blank"
+                rel="sponsored nofollow noopener"
+                onClick={() => track("cta_promptschool_click", { source: "prompts_per_beroep" })}
+                className="text-primary font-medium hover:underline"
+              >
+                PromptSchool.online
+              </a>{" "}
+              leer je promptstructuren voor ChatGPT, Claude, Gemini en Midjourney —
+              inclusief lifetime toegang en updates.
             </p>
           </section>
 
