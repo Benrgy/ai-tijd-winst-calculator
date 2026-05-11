@@ -792,7 +792,7 @@ export default function CalculatorPage() {
                   key={n}
                   className="group lift-card rounded-2xl border border-border bg-card p-5"
                 >
-                  <div className="grid h-9 w-9 place-items-center rounded-full bg-primary/10 text-primary font-semibold">
+                  <div className="icon-pop grid h-9 w-9 place-items-center rounded-full bg-primary/10 text-primary font-semibold group-hover:bg-primary group-hover:text-primary-foreground">
                     {n}
                   </div>
                   <div className="mt-3 font-medium">{l}</div>
