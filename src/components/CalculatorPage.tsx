@@ -648,10 +648,12 @@ export default function CalculatorPage() {
                 aria-hidden="true"
                 className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-white/10 blur-3xl"
               />
-              <h2 className="text-2xl sm:text-3xl font-bold max-w-2xl">
+              <div aria-hidden="true" className="float-orb alt" style={{ width: 220, height: 220, bottom: -80, left: -40, background: "oklch(0.55 0.10 230 / 0.55)", filter: "blur(40px)" }} />
+              <div aria-hidden="true" className="float-orb" style={{ width: 140, height: 140, top: 30, left: "40%", background: "oklch(1 0 0 / 0.10)", filter: "blur(36px)", animationDelay: "1.2s" }} />
+              <h2 className="relative text-2xl sm:text-3xl font-bold max-w-2xl">
                 Verdien je tijdwinst structureel terug met PromptSchool.online
               </h2>
-              <p className="mt-3 max-w-2xl text-white/90 leading-relaxed">
+              <p className="relative mt-3 max-w-2xl text-white/90 leading-relaxed">
                 Losse prompts kopiëren werkt tijdelijk. Voor structurele tijdwinst
                 heb je herhaalbare promptstructuren nodig. PromptSchool.online is
                 de Nederlandstalige Prompt Engineering cursus voor{" "}
@@ -659,7 +661,7 @@ export default function CalculatorPage() {
                 ontwikkeld voor Nederlandse professionals die AI willen inzetten
                 voor e-mails, notulen, rapportages en dagelijkse kantoorprocessen.
               </p>
-              <ul className="mt-5 flex flex-wrap gap-2 text-sm">
+              <ul className="relative mt-5 flex flex-wrap gap-2 text-sm">
                 {[
                   "100% Nederlandstalig",
                   "Lifetime toegang vanaf €249 (early access, normaal €499)",
@@ -669,7 +671,7 @@ export default function CalculatorPage() {
                 ].map((t) => (
                   <li
                     key={t}
-                    className="rounded-full bg-white/15 px-3 py-1 backdrop-blur"
+                    className="rounded-full bg-white/15 px-3 py-1 backdrop-blur transition-all hover:bg-white/25 hover:-translate-y-0.5"
                   >
                     ✓ {t}
                   </li>
@@ -681,12 +683,14 @@ export default function CalculatorPage() {
                 rel="sponsored nofollow noopener"
                 aria-label="Bekijk de Nederlandstalige AI-cursus van PromptSchool.online"
                 onClick={() => track("cta_promptschool_click", { source: "main_cta" })}
-                className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-primary hover:bg-white/95 transition-all hover:scale-[1.02]"
+                className="shine glow-hover relative mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-primary hover:bg-white transition-all hover:scale-[1.03]"
               >
-                Bekijk PromptSchool.online (Early Access €249)
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                <span className="relative z-10 inline-flex items-center gap-2">
+                  Bekijk PromptSchool.online (Early Access €249)
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </span>
               </a>
-              <p className="mt-4 text-xs text-white/75">
+              <p className="relative mt-4 text-xs text-white/75">
                 Deze pagina bevat affiliate links. Als je via deze link koopt,
                 kan ik een commissie ontvangen zonder extra kosten voor jou.
               </p>
