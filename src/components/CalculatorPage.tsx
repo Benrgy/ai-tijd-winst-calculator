@@ -790,7 +790,7 @@ export default function CalculatorPage() {
               ].map(([n, l]) => (
                 <div
                   key={n}
-                  className="rounded-2xl border border-border bg-card p-5 hover:shadow-md transition-shadow"
+                  className="group lift-card rounded-2xl border border-border bg-card p-5"
                 >
                   <div className="grid h-9 w-9 place-items-center rounded-full bg-primary/10 text-primary font-semibold">
                     {n}
@@ -894,7 +894,7 @@ export default function CalculatorPage() {
               ].map(([t, d]) => (
                 <div
                   key={t}
-                  className="rounded-2xl border border-border bg-card p-5 hover:border-primary/40 hover:shadow-md transition-all"
+                  className="group lift-card rounded-2xl border border-border bg-card p-5"
                 >
                   <div className="font-semibold">{t}</div>
                   <div className="mt-2 text-sm text-muted-foreground leading-relaxed">
@@ -1049,7 +1049,7 @@ export default function CalculatorPage() {
                   key={t}
                   href="#"
                   onClick={() => track("internal_link_click", { title: t })}
-                  className="group rounded-2xl border border-border bg-card p-5 flex items-center justify-between hover:border-primary/40 hover:shadow-md transition-all"
+                  className="group lift-card rounded-2xl border border-border bg-card p-5 flex items-center justify-between"
                 >
                   <span className="font-medium">{t}</span>
                   <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" aria-hidden="true" />
@@ -1158,7 +1158,7 @@ function BeforeAfterCard({
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
       aria-expanded={open}
-      className="text-left rounded-2xl border border-border bg-card p-5 hover:border-primary/40 hover:shadow-md transition-all"
+      className="group lift-card text-left rounded-2xl border border-border bg-card p-5"
     >
       <div className="flex items-center gap-3">
         <span className="rounded-lg bg-primary/10 p-2 text-primary">
