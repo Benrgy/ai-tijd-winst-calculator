@@ -235,14 +235,17 @@ export default function CalculatorPage() {
       />
 
       {/* HERO */}
-      <header className="px-4 pt-10 sm:pt-16 pb-6">
-        <div className="mx-auto max-w-6xl">
+      <header className="relative px-4 pt-10 sm:pt-16 pb-6 overflow-hidden">
+        <div aria-hidden="true" className="float-orb alt" style={{ width: 280, height: 280, top: -60, left: "-4%", background: "oklch(0.55 0.10 230 / 0.45)" }} />
+        <div aria-hidden="true" className="float-orb" style={{ width: 220, height: 220, top: 40, right: "-3%", background: "oklch(0.36 0.09 235 / 0.35)", animationDelay: "1.5s" }} />
+        <div className="relative mx-auto max-w-6xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-primary">
+            <span className="live-dot" aria-hidden="true" />
             <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
             Gratis AI Calculator
           </span>
           <h1 className="mt-4 text-3xl sm:text-5xl font-bold tracking-tight max-w-4xl">
-            Hoeveel tijd bespaart ChatGPT met administratie? Bereken het in 60 seconden
+            Hoeveel tijd bespaart <span className="gradient-text-anim">ChatGPT</span> met administratie? Bereken het in 60 seconden
           </h1>
           <p className="mt-4 max-w-2xl text-base sm:text-lg text-muted-foreground">
             Gratis Nederlandse AI Tijdwinst Calculator voor e-mails, notulen,
@@ -255,7 +258,7 @@ export default function CalculatorPage() {
               (t) => (
                 <li
                   key={t}
-                  className="rounded-full border border-border bg-card/60 px-3 py-1 text-muted-foreground"
+                  className="rounded-full border border-border bg-card/60 px-3 py-1 text-muted-foreground transition-all hover:bg-card hover:text-foreground hover:border-primary/40 hover:-translate-y-0.5"
                 >
                   ✓ {t}
                 </li>
@@ -289,15 +292,15 @@ export default function CalculatorPage() {
             ].map(({ Icon, label, w }) => (
               <div
                 key={label}
-                className="rounded-2xl border border-border bg-card p-4 shadow-sm hover:shadow-md transition-shadow"
+                className="group lift-card tilt-card rounded-2xl border border-border bg-card p-4 shadow-sm cursor-default"
               >
                 <div className="flex items-center gap-2">
-                  <span className="rounded-lg bg-primary/10 p-2 text-primary">
+                  <span className="icon-pop rounded-lg bg-primary/10 p-2 text-primary group-hover:bg-primary group-hover:text-primary-foreground">
                     <Icon className="h-4 w-4" aria-hidden="true" />
                   </span>
-                  <span className="text-sm font-medium">{label}</span>
+                  <span className="text-sm font-medium underline-grow">{label}</span>
                 </div>
-                <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">
+                <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted bar-shimmer">
                   <div
                     className="h-full rounded-full bg-gradient-to-r from-primary to-accent-2 animate-pulse-soft"
                     style={{ width: w }}
