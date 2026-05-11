@@ -84,6 +84,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
     ],
     links: [
+      { rel: "preconnect", href: "https://cdn.gpteng.co", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch", href: "https://cdn.gpteng.co" },
       {
         rel: "stylesheet",
         href: appCss,
