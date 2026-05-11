@@ -476,9 +476,12 @@ export default function CalculatorPage() {
               {/* Results */}
               <aside className="lg:col-span-2">
                 <div className="sticky top-16 space-y-4">
-                  <div className="rounded-3xl border border-border bg-gradient-primary p-6 text-white shadow-glow">
-                    <div className="flex items-center justify-between">
-                      <h2 className="text-lg font-semibold">
+                  <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-primary p-6 text-white shadow-glow">
+                    <div aria-hidden="true" className="float-orb" style={{ width: 180, height: 180, top: -40, right: -30, background: "oklch(1 0 0 / 0.18)", filter: "blur(30px)" }} />
+                    <div aria-hidden="true" className="float-orb alt" style={{ width: 140, height: 140, bottom: -50, left: -20, background: "oklch(0.55 0.10 230 / 0.55)", filter: "blur(28px)", animationDelay: "2s" }} />
+                    <div className="relative flex items-center justify-between">
+                      <h2 className="text-lg font-semibold inline-flex items-center gap-2">
+                        <span className="live-dot" aria-hidden="true" />
                         Jouw geschatte AI-tijdwinst
                       </h2>
                       <span
@@ -487,7 +490,7 @@ export default function CalculatorPage() {
                         bijgewerkt
                       </span>
                     </div>
-                    <div className="mt-5 grid grid-cols-2 gap-3">
+                    <div className="relative mt-5 grid grid-cols-2 gap-3">
                       <ResultMini label="Tijd / week" value={`${fmtH(calc.totalH)} u`} />
                       <ResultMini label="Tijdwinst / week" value={`${fmtH(calc.savedW)} u`} />
                       <ResultBig label="Tijdwinst / maand" value={`${fmtH(calc.savedM)} u`} />
