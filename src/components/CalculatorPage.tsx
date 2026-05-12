@@ -681,7 +681,7 @@ export default function CalculatorPage() {
                 href={AFFILIATE_URL}
                 target="_blank"
                 rel="sponsored nofollow noopener"
-                aria-label="Bekijk de Nederlandstalige AI-cursus van PromptSchool.online"
+                aria-label="Bekijk de cursus Hier!"
                 onClick={() => track("cta_promptschool_click", { source: "main_cta" })}
                 className="shine glow-hover relative mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-primary hover:bg-white transition-all hover:scale-[1.03]"
               >
