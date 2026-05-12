@@ -545,20 +545,25 @@ export default function CalculatorPage() {
             </div>
 
             {/* Share */}
-            <div className="mt-6 rounded-3xl border border-border bg-gradient-soft p-6">
-              <h3 className="text-lg font-semibold">Deel je resultaat</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
+            <div className="relative mt-6 overflow-hidden rounded-3xl border border-border bg-gradient-soft p-6">
+              <div aria-hidden="true" className="float-orb" style={{ width: 180, height: 180, top: -60, right: -40, background: "oklch(0.55 0.10 230 / 0.45)" }} />
+              <div aria-hidden="true" className="float-orb alt" style={{ width: 140, height: 140, bottom: -50, left: -30, background: "oklch(0.65 0.18 145 / 0.30)", animationDelay: "0.8s" }} />
+              <div className="relative flex items-center gap-2">
+                <span className="live-dot" aria-hidden="true" />
+                <h3 className="text-lg font-semibold gradient-text-anim">Deel je resultaat</h3>
+              </div>
+              <p className="relative mt-1 text-sm text-muted-foreground">
                 Kopieer je berekening en deel deze met een collega, manager of
                 team.
               </p>
-              <div className="mt-3 rounded-xl border border-border bg-card p-3 text-sm text-foreground/80">
+              <div className="relative mt-3 rounded-xl border border-border bg-card p-3 text-sm text-foreground/80 bar-shimmer">
                 {shareText}
               </div>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="relative mt-4 flex flex-wrap gap-2">
                 <button
                   type="button"
                   onClick={copyResult}
-                  className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+                  className="shine glow-hover inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-all hover:scale-[1.03]"
                 >
                   {copied ? (
                     <>
@@ -567,7 +572,7 @@ export default function CalculatorPage() {
                     </>
                   ) : (
                     <>
-                      <Copy className="h-4 w-4" aria-hidden="true" /> Kopieer
+                      <Copy className="h-4 w-4 icon-pop" aria-hidden="true" /> Kopieer
                       mijn resultaat
                     </>
                   )}
@@ -575,9 +580,9 @@ export default function CalculatorPage() {
                 <button
                   type="button"
                   onClick={linkedinShare}
-                  className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+                  className="glow-hover inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground hover:bg-secondary transition-all hover:-translate-y-0.5"
                 >
-                  <Linkedin className="h-4 w-4" aria-hidden="true" /> Deel op
+                  <Linkedin className="h-4 w-4 icon-pop" aria-hidden="true" /> Deel op
                   LinkedIn
                 </button>
               </div>
