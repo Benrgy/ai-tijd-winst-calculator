@@ -683,10 +683,10 @@ export default function CalculatorPage() {
                 rel="sponsored nofollow noopener"
                 aria-label="Bekijk de cursus Hier!"
                 onClick={() => track("cta_promptschool_click", { source: "main_cta" })}
-                className="shine glow-hover relative mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-primary hover:bg-white transition-all hover:scale-[1.03]"
+                className="shine glow-hover group relative mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-primary hover:bg-white transition-all hover:scale-[1.03]"
               >
-                <span className="relative z-10 inline-flex items-center gap-2 whitespace-pre-line">
-                  {"Bekijk de cursus Hier!\n\n\n\n"}
+                <span className="relative z-10 inline-flex items-center gap-2">
+                  Bekijk de cursus Hier!
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </span>
               </a>
