@@ -781,7 +781,7 @@ export default function CalculatorPage() {
           {/* METHODE */}
           <section id="methode" className="mt-14 scroll-mt-20">
             <h2 className="text-2xl font-bold">Methode achter de berekening</h2>
-            <div className="mt-5 grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="mt-5 grid grid-cols-2 md:grid-cols-4 gap-2.5">
               {[
                 ["1", "Taken invullen"],
                 ["2", "Tijd optellen"],
@@ -790,12 +790,12 @@ export default function CalculatorPage() {
               ].map(([n, l]) => (
                 <div
                   key={n}
-                  className="group lift-card rounded-2xl border border-border bg-card p-5"
+                  className="group lift-card rounded-xl border border-border bg-card p-3"
                 >
-                  <div className="icon-pop grid h-9 w-9 place-items-center rounded-full bg-primary/10 text-primary font-semibold group-hover:bg-primary group-hover:text-primary-foreground">
+                  <div className="icon-pop grid h-7 w-7 place-items-center rounded-full bg-primary/10 text-primary text-xs font-semibold group-hover:bg-primary group-hover:text-primary-foreground">
                     {n}
                   </div>
-                  <div className="mt-3 font-medium">{l}</div>
+                  <div className="mt-2 text-sm font-medium">{l}</div>
                 </div>
               ))}
             </div>
