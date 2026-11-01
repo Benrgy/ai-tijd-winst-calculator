@@ -7,6 +7,8 @@ import {
   Copy,
   Check,
   Linkedin,
+  Link as LinkIcon,
+  Printer,
   Sparkles,
   ArrowRight,
   ChevronDown,
@@ -19,6 +21,8 @@ import {
   Users,
 } from "lucide-react";
 import { FAQS as SEO_FAQS, LAST_REVIEWED } from "@/lib/seo";
+import { bereken, naarParams, uitParams } from "@/lib/berekening";
+import { Button } from "@/components/ui/button";
 
 const AFFILIATE_URL =
   "https://www.paypro.nl/producten/Beheers_AI_als_een_expert!_Compleet_cursus_voor_AI!/122439/14535";
@@ -144,7 +148,11 @@ export default function CalculatorPage() {
   const [minPerText, setMinPerText] = useState(30);
   const [scenario, setScenario] = useState(0.4);
   const [rate, setRate] = useState(35);
+  const [team, setTeam] = useState(1);
+  const [eigenInschatting, setEigenInschatting] = useState(false);
+  const [eigenPercentage, setEigenPercentage] = useState(30);
   const [copied, setCopied] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
   const [activePromptTab, setActivePromptTab] = useState<"email" | "notulen" | "rapportage">("email");
   const [updated, setUpdated] = useState(false);
   const [showStickyCta, setShowStickyCta] = useState(false);
@@ -152,6 +160,21 @@ export default function CalculatorPage() {
 
   useEffect(() => {
     track("calculator_view");
+  }, []);
+
+  useEffect(() => {
+    const { invoer, eigenInschatting: eigen, eigenPercentage: percentage } = uitParams(new URLSearchParams(window.location.search));
+    setEmails(invoer.emails);
+    setMinPerEmail(invoer.minPerEmail);
+    setMeetings(invoer.meetings);
+    setMinPerMeeting(invoer.minPerMeeting);
+    setAdminTexts(invoer.adminTexts);
+    setMinPerText(invoer.minPerText);
+    setScenario(invoer.scenario);
+    setRate(invoer.rate);
+    setTeam(invoer.team);
+    setEigenInschatting(eigen);
+    setEigenPercentage(percentage);
   }, []);
 
   useEffect(() => {
@@ -168,29 +191,19 @@ export default function CalculatorPage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [stickyDismissed]);
 
+  const gekozenScenario = eigenInschatting ? eigenPercentage / 100 : scenario;
+
   useEffect(() => {
     setUpdated(true);
     const t = setTimeout(() => setUpdated(false), 700);
     return () => clearTimeout(t);
-  }, [emails, minPerEmail, meetings, minPerMeeting, adminTexts, minPerText, scenario, rate]);
+  }, [emails, minPerEmail, meetings, minPerMeeting, adminTexts, minPerText, gekozenScenario, rate, team]);
 
-  const calc = useMemo(() => {
-    const totalMin =
-      emails * minPerEmail + meetings * minPerMeeting + adminTexts * minPerText;
-    const totalH = totalMin / 60;
-    const savedW = totalH * scenario;
-    const savedM = savedW * 4.33;
-    const savedY = savedW * 52;
-    return {
-      totalH,
-      savedW,
-      savedM,
-      savedY,
-      valW: savedW * rate,
-      valM: savedM * rate,
-      valY: savedY * rate,
-    };
-  }, [emails, minPerEmail, meetings, minPerMeeting, adminTexts, minPerText, scenario, rate]);
+  const invoer = useMemo(() => ({
+    emails, minPerEmail, meetings, minPerMeeting, adminTexts, minPerText,
+    scenario: gekozenScenario, rate, team,
+  }), [emails, minPerEmail, meetings, minPerMeeting, adminTexts, minPerText, gekozenScenario, rate, team]);
+  const calc = useMemo(() => bereken(invoer), [invoer]);
 
   const meterLevel: "Laag" | "Middel" | "Hoog" =
     calc.savedM < 4 ? "Laag" : calc.savedM <= 15 ? "Middel" : "Hoog";
@@ -213,9 +226,24 @@ export default function CalculatorPage() {
     } catch {}
   };
 
+  const berekeningLink = () => {
+    const url = new URL(window.location.href);
+    const params = naarParams(invoer);
+    params.forEach((value, key) => url.searchParams.set(key, value));
+    return url.toString();
+  };
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(berekeningLink());
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 2200);
+    } catch {}
+  };
+
   const linkedinShare = () => {
     track("linkedin_share_clicked");
-    const url = typeof window !== "undefined" ? window.location.href : "";
+    const url = berekeningLink();
     window.open(
       `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
       "_blank",
@@ -223,10 +251,10 @@ export default function CalculatorPage() {
     );
   };
 
-  const scenarioPct = Math.round(scenario * 100);
+  const scenarioPct = Math.round(gekozenScenario * 100);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="calculator-page min-h-screen bg-background text-foreground">
       {/* Soft gradient background */}
       <div
         aria-hidden="true"
@@ -361,9 +389,9 @@ export default function CalculatorPage() {
 
           {/* CALCULATOR */}
           <section id="berekenen" className="mt-10 scroll-mt-20">
-            <div className="grid lg:grid-cols-5 gap-6">
+            <div className="calculation-layout grid lg:grid-cols-5 gap-6">
               {/* Inputs */}
-              <div className="lg:col-span-3 rounded-3xl border border-border bg-card p-5 sm:p-7 shadow-soft">
+              <div className="calculation-inputs lg:col-span-3 rounded-3xl border border-border bg-card p-5 sm:p-7 shadow-soft">
                 <div className="flex items-center gap-2">
                   <CalcIcon className="h-5 w-5 text-primary" aria-hidden="true" />
                   <h2 className="text-xl font-semibold">Bereken je tijdwinst</h2>
@@ -423,13 +451,14 @@ export default function CalculatorPage() {
                   </span>
                   <div className="mt-2 grid grid-cols-3 gap-2">
                     {SCENARIOS.map((s) => {
-                      const active = Math.abs(scenario - s.value) < 0.001;
+                      const active = !eigenInschatting && Math.abs(scenario - s.value) < 0.001;
                       return (
                         <button
                           key={s.value}
                           type="button"
                           aria-pressed={active}
                           onClick={() => {
+                            setEigenInschatting(false);
                             setScenario(s.value);
                             track("scenario_selected", { scenario: s.tag });
                           }}
@@ -448,7 +477,32 @@ export default function CalculatorPage() {
                         </button>
                       );
                     })}
+                    <Button
+                      type="button"
+                      variant="outline"
+                      aria-pressed={eigenInschatting}
+                      onClick={() => setEigenInschatting(true)}
+                      className={`col-span-3 h-auto min-h-12 justify-start whitespace-normal rounded-xl border px-3 py-3 text-left shadow-none transition-all ${
+                        eigenInschatting
+                          ? "border-primary bg-primary/5 ring-2 ring-primary/30"
+                          : "border-border bg-card hover:border-primary/40"
+                      }`}
+                    >
+                      Eigen inschatting
+                    </Button>
                   </div>
+                  {eigenInschatting && (
+                    <div className="mt-3 max-w-xs">
+                      <NumberInput
+                        label="Eigen besparingspercentage"
+                        help="Gebruik dit als je je eigen schatting hebt."
+                        value={eigenPercentage}
+                        setValue={(value) => setEigenPercentage(Math.round(value))}
+                        min={0}
+                        max={90}
+                      />
+                    </div>
+                  )}
                   <span className="mt-1 block text-xs text-muted-foreground">
                     Kies een scenario. De uitkomst is een schatting, geen
                     garantie.
@@ -465,12 +519,22 @@ export default function CalculatorPage() {
                     prefix="€"
                   />
                 </div>
+                <div className="mt-5 max-w-xs">
+                  <NumberInput
+                    label="Aantal medewerkers met vergelijkbaar werk"
+                    help="Vul meer dan 1 in om de tijdwinst voor je hele team te zien."
+                    value={team}
+                    setValue={(value) => setTeam(Math.round(value))}
+                    min={1}
+                    max={500}
+                  />
+                </div>
               </div>
 
               {/* Results */}
-              <aside className="lg:col-span-2">
+              <aside className="calculation-results lg:col-span-2">
                 <div className="sticky top-16 space-y-4">
-                  <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-primary p-6 text-white shadow-glow">
+                  <div className="calculation-result-card relative overflow-hidden rounded-3xl border border-border bg-gradient-primary p-6 text-white shadow-glow">
                     <div aria-hidden="true" className="float-orb" style={{ width: 180, height: 180, top: -40, right: -30, background: "oklch(1 0 0 / 0.18)", filter: "blur(30px)" }} />
                     <div aria-hidden="true" className="float-orb alt" style={{ width: 140, height: 140, bottom: -50, left: -20, background: "oklch(0.55 0.10 230 / 0.55)", filter: "blur(28px)", animationDelay: "2s" }} />
                     <div className="relative flex items-center justify-between">
@@ -495,6 +559,18 @@ export default function CalculatorPage() {
                         <ResultBig label="Waarde / jaar" value={fmtEUR(calc.valY)} wide />
                       </div>
                     </div>
+                    {team > 1 && (
+                      <div className="relative mt-5 border-t border-border/30 pt-5">
+                        <h3 className="text-lg font-semibold">Voor je team van {team} medewerkers</h3>
+                        <div className="mt-3 grid grid-cols-2 gap-3">
+                          <ResultBig label="Tijdwinst / maand" value={`${fmtH(calc.teamSavedM)} u`} />
+                          <ResultMini label="Tijdwinst / jaar" value={`${fmtH(calc.teamSavedY)} u`} />
+                          <div className="col-span-2">
+                            <ResultBig label="Waarde / jaar" value={fmtEUR(calc.teamValY)} wide />
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Meter */}
@@ -571,6 +647,17 @@ export default function CalculatorPage() {
                     </>
                   )}
                 </button>
+                <Button
+                  type="button"
+                  onClick={copyLink}
+                  className="shine glow-hover h-auto min-h-10 whitespace-normal rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-none hover:bg-primary/90 transition-all hover:scale-[1.03]"
+                >
+                  {linkCopied ? (
+                    <><Check className="h-4 w-4" aria-hidden="true" /> Link gekopieerd.</>
+                  ) : (
+                    <><LinkIcon className="h-4 w-4 icon-pop" aria-hidden="true" /> Kopieer link naar deze berekening</>
+                  )}
+                </Button>
                 <button
                   type="button"
                   onClick={linkedinShare}
@@ -579,6 +666,14 @@ export default function CalculatorPage() {
                   <Linkedin className="h-4 w-4 icon-pop" aria-hidden="true" /> Deel op
                   LinkedIn
                 </button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => window.print()}
+                  className="glow-hover h-auto min-h-10 whitespace-normal rounded-xl border border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground shadow-none hover:bg-secondary transition-all hover:-translate-y-0.5"
+                >
+                  <Printer className="h-4 w-4 icon-pop" aria-hidden="true" /> Print of bewaar als PDF
+                </Button>
               </div>
             </div>
           </section>
