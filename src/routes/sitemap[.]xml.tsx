@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CANONICAL, LAST_REVIEWED, SITE_ORIGIN } from "@/lib/seo";
+import { LAST_REVIEWED, SITE_ORIGIN } from "@/lib/seo";
 
 const urls = [
   { loc: `${SITE_ORIGIN}/`, priority: "1.0" },
-  { loc: CANONICAL, priority: "0.9" },
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
