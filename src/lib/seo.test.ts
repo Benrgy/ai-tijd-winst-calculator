@@ -1,32 +1,33 @@
-import { describe, expect, test } from "bun:test";
+import { describe, test } from "node:test";
+import assert from "node:assert/strict";
 import { buildHead, buildJsonLd, CANONICAL, LAST_REVIEWED, OG_IMAGE, SITE_ORIGIN } from "./seo";
 
 describe("Maintenance URL and review rules", () => {
   test("uses the published site origin", () => {
-    expect(SITE_ORIGIN).toBe("https://ai-tijd-winst-calculator.lovable.app");
+    assert.equal(SITE_ORIGIN, "https://ai-tijd-winst-calculator.lovable.app");
   });
 
   test("canonicalizes calculator pages to the homepage", () => {
-    expect(CANONICAL).toBe("https://ai-tijd-winst-calculator.lovable.app/");
-    expect(buildHead(CANONICAL).links.find((link) => link.rel === "canonical")?.href).toBe(CANONICAL);
+    assert.equal(CANONICAL, "https://ai-tijd-winst-calculator.lovable.app/");
+    assert.equal(buildHead(CANONICAL).links.find((link) => link.rel === "canonical")?.href, CANONICAL);
   });
 
   test("uses the supplied PNG for social previews", () => {
-    expect(OG_IMAGE).toBe("https://ai-tijd-winst-calculator.lovable.app/og-ai-tijdwinst-calculator.png");
-    expect(buildHead().meta.find((meta) => meta.property === "og:image")?.content).toBe(OG_IMAGE);
-    expect(buildHead().meta.find((meta) => meta.name === "twitter:image")?.content).toBe(OG_IMAGE);
+    assert.equal(OG_IMAGE, "https://ai-tijd-winst-calculator.lovable.app/og-ai-tijdwinst-calculator.png");
+    assert.equal(buildHead().meta.find((meta) => meta.property === "og:image")?.content, OG_IMAGE);
+    assert.equal(buildHead().meta.find((meta) => meta.name === "twitter:image")?.content, OG_IMAGE);
   });
 
   test("uses the requested review date", () => {
-    expect(LAST_REVIEWED).toBe("2026-11-01");
-    expect(buildJsonLd().find((entry) => entry["@type"] === "Article")?.dateModified).toBe(LAST_REVIEWED);
+    assert.equal(LAST_REVIEWED, "2026-11-01");
+    assert.equal(buildJsonLd().find((entry) => entry["@type"] === "Article")?.dateModified, LAST_REVIEWED);
   });
 
   test("removes the breadcrumb to the nonexistent tools page", () => {
-    expect(buildJsonLd().some((entry) => entry["@type"] === "BreadcrumbList")).toBe(false);
+    assert.equal(buildJsonLd().some((entry) => entry["@type"] === "BreadcrumbList"), false);
   });
 
   test("links the supplied research DOI in the article citation", () => {
-    expect(buildJsonLd().find((entry) => entry["@type"] === "Article")?.citation?.sameAs).toBe("https://doi.org/10.1126/science.adh2586");
+    assert.equal(buildJsonLd().find((entry) => entry["@type"] === "Article")?.citation?.sameAs, "https://doi.org/10.1126/science.adh2586");
   });
 });
