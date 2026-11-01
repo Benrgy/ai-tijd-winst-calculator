@@ -2,10 +2,9 @@
 // Optimized for Dutch search (Google NL, Bing NL) and AI answer engines
 // (Google AI Overviews / SGE, ChatGPT Search, Perplexity, Bing Copilot).
 
-export const SITE_ORIGIN = "https://YOURDOMAIN.nl";
-export const CANONICAL =
-  "https://YOURDOMAIN.nl/ai-tijdwinst-calculator-voor-administratie/";
-export const OG_IMAGE = `${SITE_ORIGIN}/og-ai-tijdwinst-calculator.jpg`;
+export const SITE_ORIGIN = "https://ai-tijd-winst-calculator.lovable.app";
+export const CANONICAL = `${SITE_ORIGIN}/`;
+export const OG_IMAGE = `${SITE_ORIGIN}/og-ai-tijdwinst-calculator.png`;
 
 export const META_TITLE =
   "AI Tijdwinst Calculator 2026: hoeveel tijd bespaart ChatGPT met administratie?";
@@ -18,11 +17,11 @@ export const META_DESC =
 export const FAQS: ReadonlyArray<readonly [string, string]> = [
   [
     "Hoeveel tijd bespaart ChatGPT met administratie?",
-    "ChatGPT bespaart bij administratief werk gemiddeld 20% tot 60% van de tijd op terugkerende taken zoals e-mails, notulen, samenvattingen en standaardteksten. Voor een typische kantoormedewerker komt dat neer op ongeveer 3 tot 8 uur per week, afhankelijk van het takenpakket, de promptkwaliteit en de controle op de output. Deze calculator rekent met drie scenario's: 25% voorzichtig, 40% realistisch en 60% ambitieus.",
+    "Dat hangt af van je takenpakket; er bestaat geen vast percentage voor alle administratie. Het best onderbouwde cijfer komt uit een experiment van Noy en Zhang (MIT, gepubliceerd in Science, 2023): 453 hoogopgeleide professionals voerden schrijfopdrachten uit, en met ChatGPT daalde hun gemiddelde tijd met 40% terwijl de kwaliteit met 18% steeg. Deze calculator rekent daarom met drie scenario's: 25% voorzichtig, 40% realistisch en 60% ambitieus. Vul je eigen werklast in voor een schatting.",
   ],
   [
     "Hoeveel tijd bespaart ChatGPT met e-mail per dag?",
-    "ChatGPT bespaart bij zakelijke e-mail gemiddeld 30% tot 50% van de schrijftijd. Voor iemand die 30 tot 50 e-mails per dag verstuurt komt dat neer op 20 tot 60 minuten per dag. De grootste winst zit in herhaalbare situaties zoals klantantwoorden, opvolgmails, samenvattingen en formele bevestigingen.",
+    "Dat hangt af van hoeveel e-mails je schrijft en hoeveel daarvan terugkerend zijn; een vast getal per dag is niet te geven. Vul je eigen aantal e-mails en minuten per e-mail in de calculator in voor een schatting. De grootste winst zit in herhaalbare situaties zoals klantantwoorden, opvolgmails, samenvattingen en formele bevestigingen.",
   ],
   [
     "Kan ChatGPT zakelijke e-mails sneller schrijven in het Nederlands?",
@@ -38,7 +37,7 @@ export const FAQS: ReadonlyArray<readonly [string, string]> = [
   ],
   [
     "ChatGPT vs Microsoft Copilot voor Nederlandse kantoorwerk: wat bespaart meer tijd?",
-    "Microsoft Copilot bespaart vaak meer tijd binnen Outlook, Word en Excel omdat het direct in je bestaande documenten en mailbox werkt. ChatGPT bespaart meer tijd bij vrije teksten, complexere prompts, brainstormen en taken buiten Microsoft 365. Veel Nederlandse kantoormedewerkers gebruiken beide naast elkaar: Copilot voor in-app werk en ChatGPT voor losse teksten en research.",
+    "Microsoft Copilot bespaart vaak meer tijd binnen Outlook, Word en Excel omdat het direct in je bestaande documenten en mailbox werkt. ChatGPT bespaart meer tijd bij vrije teksten, complexere prompts, brainstormen en taken buiten Microsoft 365. Je kunt ze ook naast elkaar gebruiken: Copilot voor werk in je Microsoft-apps en ChatGPT voor losse teksten en research.",
   ],
   [
     "Welke administratieve taken kun je automatiseren met ChatGPT?",
@@ -50,7 +49,7 @@ export const FAQS: ReadonlyArray<readonly [string, string]> = [
   ],
   [
     "Is een Nederlandstalige ChatGPT-cursus de moeite waard voor administratief medewerkers?",
-    "Een Nederlandstalige ChatGPT-cursus is de moeite waard voor administratief medewerkers die wekelijks meer dan vijf uur kwijt zijn aan e-mails, notulen, samenvattingen of standaardteksten. Een goede cursus leert je promptstructuren, herbruikbare templates en veilige werkwijzen — meestal verdien je de tijdsinvestering binnen één tot twee weken terug.",
+    "Een Nederlandstalige ChatGPT-cursus is de moeite waard voor administratief medewerkers die wekelijks meer dan vijf uur kwijt zijn aan e-mails, notulen, samenvattingen of standaardteksten. Een goede cursus leert je promptstructuren, herbruikbare templates en veilige werkwijzen.",
   ],
   [
     "Waarom geeft ChatGPT in het Nederlands soms slechte of robotachtige tekst?",
@@ -66,7 +65,6 @@ const ORG = {
   "@type": "Organization",
   name: "AI Tijdwinst Calculator",
   url: SITE_ORIGIN,
-  logo: `${SITE_ORIGIN}/logo.png`,
 };
 
 const AUTHOR = {
@@ -81,7 +79,7 @@ const AUTHOR = {
   ],
 };
 
-export const LAST_REVIEWED = "2026-05-10";
+export const LAST_REVIEWED = "2026-11-01";
 
 export function buildJsonLd(canonical: string = CANONICAL) {
   return [
@@ -108,7 +106,7 @@ export function buildJsonLd(canonical: string = CANONICAL) {
       "@context": "https://schema.org",
       "@type": "Article",
       headline:
-        "Hoeveel tijd bespaart ChatGPT met administratie? Berekening + benchmarks 2026",
+        "Hoeveel tijd bespaart ChatGPT met administratie? Berekening, onderzoek en prompts",
       description: META_DESC,
       inLanguage: "nl-NL",
       datePublished: "2026-04-01",
@@ -117,6 +115,17 @@ export function buildJsonLd(canonical: string = CANONICAL) {
       publisher: ORG,
       mainEntityOfPage: canonical,
       image: OG_IMAGE,
+      citation: {
+        "@type": "ScholarlyArticle",
+        name: "Experimental evidence on the productivity effects of generative artificial intelligence",
+        author: [
+          { "@type": "Person", name: "Shakked Noy" },
+          { "@type": "Person", name: "Whitney Zhang" },
+        ],
+        datePublished: "2023-07-13",
+        isPartOf: { "@type": "Periodical", name: "Science" },
+        sameAs: "https://doi.org/10.1126/science.adh2586",
+      },
       about: [
         { "@type": "Thing", name: "ChatGPT" },
         { "@type": "Thing", name: "Administratie" },
@@ -139,15 +148,6 @@ export function buildJsonLd(canonical: string = CANONICAL) {
         { "@type": "HowToStep", name: "Kies een AI-scenario", text: "Selecteer 25% voorzichtig, 40% realistisch of 60% ambitieus als verwachte tijdsbesparing." },
         { "@type": "HowToStep", name: "Vul je uurtarief in", text: "Gebruik je interne uurtarief of loonkosten per uur om de waarde in euro's te berekenen." },
         { "@type": "HowToStep", name: "Bekijk de uitkomst", text: "Lees je geschatte tijdwinst per week, maand en jaar en de bijbehorende waarde in euro's." },
-      ],
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_ORIGIN}/` },
-        { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_ORIGIN}/tools/` },
-        { "@type": "ListItem", position: 3, name: "AI Tijdwinst Calculator", item: canonical },
       ],
     },
     {

@@ -7,7 +7,6 @@ import {
   Copy,
   Check,
   Linkedin,
-  PlayCircle,
   Sparkles,
   ArrowRight,
   ChevronDown,
@@ -249,7 +248,7 @@ export default function CalculatorPage() {
           </h1>
           <p className="mt-4 max-w-2xl text-base sm:text-lg text-muted-foreground">
             Gratis Nederlandse AI Tijdwinst Calculator voor e-mails, notulen,
-            rapportages en standaardteksten. Inclusief benchmarks, voorbeeldprompts
+            rapportages en standaardteksten. Inclusief onderzoeksbron, voorbeeldprompts
             en een vergelijking van ChatGPT, Microsoft Copilot, Gemini en Claude
             voor Nederlands kantoorwerk.
           </p>
@@ -349,13 +348,8 @@ export default function CalculatorPage() {
                 Kort antwoord
               </h2>
               <p className="mt-2 text-sm sm:text-base text-foreground/90 leading-relaxed">
-                <strong>ChatGPT bespaart bij administratief werk gemiddeld 20% tot 60% van de tijd</strong>{" "}
-                op terugkerende taken zoals e-mails, notulen, samenvattingen en
-                standaardteksten. Voor een typische Nederlandse kantoormedewerker
-                komt dat neer op <strong>3 tot 8 uur per week</strong>, oftewel
-                ongeveer <strong>150 tot 400 uur per jaar</strong>. De exacte tijdwinst
-                hangt af van je takenpakket, je promptkwaliteit en de tijd die
-                je besteedt aan controle van de AI-output.
+                <strong>Er is geen vast percentage: hoeveel tijd ChatGPT bespaart, hangt af van je takenpakket.</strong>{" "}
+                Het best onderbouwde cijfer komt uit een experiment met 453 hoogopgeleide professionals die schrijfopdrachten uitvoerden: met ChatGPT daalde hun gemiddelde tijd met <strong>40%</strong> en steeg de kwaliteit met <strong>18%</strong> (Noy en Zhang, MIT, <a href="https://doi.org/10.1126/science.adh2586" target="_blank" rel="noopener" className="text-primary font-medium hover:underline">Science 2023</a>). Daarom rekent deze calculator met drie scenario's. Je werkelijke tijdwinst hangt af van je takenpakket, je promptkwaliteit en de tijd die je besteedt aan controle van de AI-output.
               </p>
               <ul className="mt-3 grid sm:grid-cols-3 gap-2 text-xs">
                 <li className="rounded-lg bg-card border border-border px-3 py-2"><span className="font-semibold text-foreground">25%</span> <span className="text-muted-foreground">voorzichtig scenario</span></li>
@@ -702,32 +696,6 @@ export default function CalculatorPage() {
             </div>
           </section>
 
-          {/* VIDEO PLACEHOLDER */}
-          <section className="mt-12">
-            <h2 className="text-2xl font-bold">
-              Bekijk hoe betere prompts tijd besparen
-            </h2>
-            <div className="mt-4 rounded-3xl border border-border bg-card p-6 flex flex-col sm:flex-row items-center gap-5">
-              <div className="grid place-items-center h-24 w-24 sm:h-28 sm:w-28 rounded-2xl bg-primary/10 text-primary">
-                <PlayCircle className="h-12 w-12" aria-hidden="true" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm text-muted-foreground">
-                  Een korte uitlegvideo kan hier later laten zien hoe je van
-                  ruwe input naar een bruikbare e-mail, samenvatting of
-                  notulenprompt gaat.
-                </p>
-                <button
-                  type="button"
-                  disabled
-                  className="mt-3 inline-flex items-center gap-2 rounded-xl border border-border bg-secondary px-4 py-2 text-sm font-medium text-muted-foreground cursor-not-allowed"
-                >
-                  Video volgt binnenkort
-                </button>
-              </div>
-            </div>
-          </section>
-
           {/* BEFORE/AFTER */}
           <section id="voorbeelden" className="mt-14 scroll-mt-20">
             <h2 className="text-2xl font-bold">
@@ -812,6 +780,12 @@ export default function CalculatorPage() {
               60% ambitieus. De maandberekening gebruikt 4,33 weken per maand en
               de jaarberekening gebruikt 52 weken. De uitkomst is een indicatie,
               geen garantie.
+            </p>
+            <p className="mt-5 text-sm text-muted-foreground leading-relaxed max-w-3xl">
+              Waarom deze percentages? Het realistische scenario van 40% sluit aan bij het experiment van Noy en Zhang (Science, 2023), waarin 453 professionals schrijfopdrachten met ChatGPT gemiddeld 40% sneller afrondden. Het voorzichtige (25%) en het ambitieuze (60%) scenario zijn bewust gekozen marges daaromheen, geen meetresultaten.
+            </p>
+            <p className="mt-5 text-sm text-muted-foreground leading-relaxed max-w-3xl">
+              Bron: Noy, S. &amp; Zhang, W. (2023). <a href="https://doi.org/10.1126/science.adh2586" target="_blank" rel="noopener" className="text-primary font-medium hover:underline">Experimental evidence on the productivity effects of generative artificial intelligence</a>. Science, 381(6654), 187–192.
             </p>
           </section>
 
@@ -921,8 +895,7 @@ export default function CalculatorPage() {
               ChatGPT vs Microsoft Copilot vs Gemini vs Claude voor Nederlandse administratie
             </h2>
             <p className="mt-2 text-sm text-muted-foreground max-w-3xl">
-              Welke AI-tool bespaart het meeste tijd bij Nederlands kantoorwerk?
-              Een korte vergelijking voor e-mail, notulen, rapportages en AVG-bewust gebruik.
+              Welke AI-tool past bij welk kantoorwerk? Een korte vergelijking voor e-mail, notulen, rapportages en Nederlandstalige teksten.
             </p>
             <div className="mt-5 overflow-x-auto rounded-2xl border border-border bg-card">
               <table className="w-full text-sm">
@@ -930,21 +903,19 @@ export default function CalculatorPage() {
                   <tr>
                     <th scope="col" className="px-4 py-3 text-left font-semibold">Tool</th>
                     <th scope="col" className="px-4 py-3 text-left font-semibold">Sterk in</th>
-                    <th scope="col" className="px-4 py-3 text-left font-semibold">Tijdwinst administratie</th>
                     <th scope="col" className="px-4 py-3 text-left font-semibold">Nederlandstalig</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
                   {[
-                    ["ChatGPT (OpenAI)", "E-mails, notulen, vrije teksten, brainstormen, prompts", "Hoog (30–60%)", "Zeer goed"],
-                    ["Microsoft Copilot", "Outlook, Word, Excel, Teams-samenvattingen", "Hoog (30–55%) binnen Microsoft 365", "Goed"],
-                    ["Google Gemini", "Gmail, Docs, samenvatten van lange documenten", "Middel-hoog (25–45%)", "Goed"],
-                    ["Claude (Anthropic)", "Lange documenten, juridische teksten, nuance", "Middel-hoog (25–50%)", "Goed"],
-                  ].map(([tool, strong, save, nl]) => (
+                    ["ChatGPT (OpenAI)", "E-mails, notulen, vrije teksten, brainstormen, prompts", "Zeer goed"],
+                    ["Microsoft Copilot", "Outlook, Word, Excel, Teams-samenvattingen", "Goed"],
+                    ["Google Gemini", "Gmail, Docs, samenvatten van lange documenten", "Goed"],
+                    ["Claude (Anthropic)", "Lange documenten, juridische teksten, nuance", "Goed"],
+                  ].map(([tool, strong, nl]) => (
                     <tr key={tool}>
                       <th scope="row" className="px-4 py-3 text-left font-medium text-foreground">{tool}</th>
                       <td className="px-4 py-3 text-muted-foreground">{strong}</td>
-                      <td className="px-4 py-3 text-muted-foreground">{save}</td>
                       <td className="px-4 py-3 text-muted-foreground">{nl}</td>
                     </tr>
                   ))}
@@ -952,8 +923,8 @@ export default function CalculatorPage() {
               </table>
             </div>
             <p className="mt-4 text-sm text-muted-foreground max-w-3xl">
-              Veel Nederlandse kantoormedewerkers combineren <strong>Microsoft Copilot</strong> voor
-              werk binnen Outlook, Word en Excel met <strong>ChatGPT</strong> voor losse teksten,
+              Je kunt ook combineren: <strong>Microsoft Copilot</strong> voor
+              werk binnen Outlook, Word en Excel en <strong>ChatGPT</strong> voor losse teksten,
               research en complexere prompts. De grootste tijdwinst ontstaat door
               promptstructuren te leren die je in elke tool kunt hergebruiken.
             </p>
@@ -1040,28 +1011,6 @@ export default function CalculatorPage() {
             </div>
           </section>
 
-          {/* VERDER LEREN */}
-          <section id="verder-leren" className="mt-14 scroll-mt-20">
-            <h2 className="text-2xl font-bold">Verder leren</h2>
-            <div className="mt-5 grid sm:grid-cols-2 gap-4">
-              {[
-                "Nederlandse ChatGPT Prompt Generator",
-                "Zakelijke e-mails schrijven met ChatGPT",
-                "Notulen maken met ChatGPT",
-                "ChatGPT voor managementassistenten",
-              ].map((t) => (
-                <a
-                  key={t}
-                  href="#"
-                  onClick={() => track("internal_link_click", { title: t })}
-                  className="group lift-card rounded-2xl border border-border bg-card p-5 flex items-center justify-between"
-                >
-                  <span className="font-medium">{t}</span>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
-          </section>
         </div>
       </main>
 
@@ -1078,9 +1027,7 @@ export default function CalculatorPage() {
             ik een commissie ontvangen zonder extra kosten voor jou.
           </p>
           <ul className="flex flex-wrap gap-4 pt-2">
-            <li><a href="#" className="hover:text-foreground">Privacy</a></li>
-            <li><a href="#" className="hover:text-foreground">Contact</a></li>
-            <li><a href="#" className="hover:text-foreground">Methodologie</a></li>
+            <li><a href="#methode" className="hover:text-foreground">Methodologie</a></li>
           </ul>
         </div>
       </footer>
